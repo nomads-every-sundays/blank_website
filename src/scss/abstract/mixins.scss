@@ -1,0 +1,20 @@
+// Media quires
+$tablet-width: 667px;
+$laptop-width: 1028px;
+$desktop-width: 1600px;
+
+@mixin media-queries($size) {
+  @if ('tablet' == $size) {
+    @media only screen and (min-width: #{$tablet-width}) {
+      @content
+    }
+  } @else if ( 'laptop' == $size) {
+    @media only screen and (min-width: #{$laptop-width}) {
+      @content
+    }
+  } @else if ('desktop' == $size) {
+    @media (min-width: #{$desktop-width}) {
+      @content;
+    }
+  }
+}
