@@ -1,14 +1,14 @@
 {
-  "name": "laravel_news",
+  "name": "blank_site",
   "version": "1.0.0",
-  "description": "This is a case study for Laravel News.",
+  "description": "Start all new Node.js sites.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open --mode development",
     "webpack": "webpack  --config webpack.config.js",
-    "development": "webpack  --config webpack.config.js --env.development",
-    "production": "webpack  --config webpack.config.js --env.production"
+    "development": "webpack  --config=config/webpack.development.config.js --env.development",
+    "production": "webpack  --config=config/webpack.production.config.js --env.production"
   },
   "author": "Keith Murphy",
   "license": "ISC",
@@ -27,7 +27,8 @@
     "style-loader": "^0.20.3",
     "webpack": "^4.5.0",
     "webpack-cli": "^3.1.1",
-    "webpack-dev-server": "^3.1.1"
+    "webpack-dev-server": "^3.1.1",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "express": "^4.17.1"
