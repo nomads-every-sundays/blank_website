@@ -29,10 +29,13 @@ module.exports = ( env = 'development' ) => {
 							},
 						},
 						'css-loader',
-						'postcss-loader',
 						{
-							loader: 'sass-loader',
-							options: { sourceMap: true },
+							loader: 'postcss-loader',
+							options: {
+								config: {
+									path: path.resolve(__dirname, '../'),
+								},
+							},
 						},
 					],
 				},

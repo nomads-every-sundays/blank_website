@@ -12,7 +12,7 @@ module.exports = ( env = 'development' ) => merge(baseConfig(env), {
 				use: [
 					{
 						loader: 'sass-loader',
-						options: { sourceMap: false },
+						options: { sourceMap: true },
 					},
 				],
 			}
