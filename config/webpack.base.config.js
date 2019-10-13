@@ -2,19 +2,14 @@ const path = require('path');
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => {
-
-	console.log(env);
-	console.log((env.production));
-
 	return {
-		mode: env,
 		entry:  path.resolve(__dirname, '../src/js/index.js'),
 		output: {
 			path: path.resolve(__dirname, '../dist'),
 			filename: 'js/bundle.js'
 		},
 		watch: env.development,
-		devtool: 'source-map',
+		devtool: 'eval',
 		module: {
 			rules: [
 				{
@@ -26,7 +21,7 @@ module.exports = (env) => {
 							options: {
 								name: '[name].css',
 								outputPath: './css',
-								sourceMap: true,
+								sourceMap: env.development,
 							}
 						},
 						{
@@ -38,24 +33,26 @@ module.exports = (env) => {
 										cssnano: env.production,
 									},
 								},
+								sourceMap: env.development,
 							},
 						},
 						{
 							loader: 'sass-loader',
-							options: { sourceMap: true },
+							options: { sourceMap: env.development },
 						},
 					],
 				},
+				{
+					test: /\.m?js$/,
+					exclude: /(node_modules|bower_components)/,
+					use: {
+						loader: 'babel-loader',
+					}
+				}
 			],
 		},
 		plugins: [
-			// new MiniCssExtractPlugin({
-			// 	// Options similar to the same options in webpackOptions.output
-			// 	// all options are optional
-			// 	filename: 'css/[name].css',
-			// 	chunkFilename: 'css/[id].css',
-			// 	ignoreOrder: false, // Enable to remove warnings about conflicting order
-			// }),
+
 		],
 	};
 };
