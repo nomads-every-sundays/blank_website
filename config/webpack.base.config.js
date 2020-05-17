@@ -1,5 +1,6 @@
 const path = require('path');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (env) => {
 	return {
@@ -22,7 +23,7 @@ module.exports = (env) => {
 								name: '[name].css',
 								outputPath: './css',
 								sourceMap: env.development,
-							}
+							},
 						},
 						{
 							loader: 'postcss-loader',
@@ -47,12 +48,23 @@ module.exports = (env) => {
 					exclude: /(node_modules|bower_components)/,
 					use: {
 						loader: 'babel-loader',
-					}
-				}
+					},
+				},
 			],
 		},
 		plugins: [
-
+			new htmlWebpackPlugin({
+				title: 'Testing Site',
+				// Load a custom template (lodash by default)
+				template: 'index.html'
+			}),
+			new MiniCssExtractPlugin({
+				// Options similar to the same options in webpackOptions.output
+				// all options are optional
+				filename: 'css/[name].css',
+				chunkFilename: '[id].css',
+				ignoreOrder: false, // Enable to remove warnings about conflicting order
+			}),
 		],
 	};
 };
